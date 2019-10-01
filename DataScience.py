@@ -73,3 +73,74 @@ CONCEPTS
 # when filtering for expressing more granular filters
 
 
+------
+Oct.01
+
+# READING A CSV FILE USING A SPECIFIC ENCODING
+# using latin encoding
+
+laptops = pd.read_csv('laptops.csv',encoding='Latin-1')
+
+# READING IN A CSV FILE USING UTF-8:
+
+laptops = pd.read_csv('laptops.csv',encoding='UTF-8')
+
+# READING IN A CSV FILE USING WINDOWS-1251:
+
+laptops = pd.read_csv('laptops.csv',encoding='Windows-1251')
+
+
+
+
+# MODIFYING COLUMNS IN A DATAFRAME
+
+# Renaming an existing column
+
+laptops.rename(columns={'MANUfacture':'manufacture'},inplace=True)
+
+# Converting a string column to float
+
+laptops['screen_size'] = laptops['screen_size'].size.replace('"','').astype(float)
+
+# Converting a string column to integer
+
+laptops['ram'] = laptops['ram'].str.replace('GB','').astype(int)
+
+
+
+#STRING COLUMN OPERATIONS
+
+# extracting values from strings:
+
+laptops['gpu_manufacturer'] = (laptops['gpu'].str.split().str[0])
+
+
+#FIXING VALUES
+# replaceing Values using a mapping dictionary
+
+
+mapping_dict = {
+    'Android':'Android',
+    'Chrome OS':'Chrome OS',
+    'Linux': 'Linux'
+    'Mac OS': 'macOS'
+    'No OS' : 'No OS'
+    'windows' : 'Windiws'
+    'macOS' : 'macOS'
+}
+
+laptops['os'] = laptops['os'].map(mapping_dict)
+
+# dropping missing values:
+laptops_no_null_rows = laptops.dropna(axis=0)
+
+#ExPLORING CLEANED DATA
+# exporting cleaned data:
+
+df.to_csv('laptops_cleaned.csv',index=False)
+
+
+
+
+
+
