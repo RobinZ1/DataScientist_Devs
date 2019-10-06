@@ -142,5 +142,39 @@ df.to_csv('laptops_cleaned.csv',index=False)
 
 
 
+-----------
+October 5th
+
+LINE CHARTS
+# Importing the pyplot module:
+import matplotlib.pyplot as plt
+
+# Displaying the plot in a Jupyter Notebook cell:
+%matplotlib inline
+
+# Generating and displaying the plot:
+plt.plot()
+plt.show()
+
+# Generating a line chart:
+
+plt.plot(first_twelve['Date'], first_twelve['VALUE'])
+
+# To rotate axis ticks:
+
+plt.xticks(rotation=90)
+
+# To add axis labels:
+
+plt.xlabel('Month')
+plt.ylabel('Unemployment Rate')
+
+# To add a plot label:
+
+plt.title('Monthly Unemployment Trends, 1948')
+
+
+
+
 
 
