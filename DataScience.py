@@ -177,7 +177,7 @@ plt.title('Monthly Unemployment Trends, 1948')
 
 
 
-Oct 7th
+Oct 6th
 
 # Creating a figure using the pyplot module
 
@@ -209,4 +209,40 @@ plt.legend(loc='upper left')
 setting the title for an Axes object:
 
 ax.set_title('Unemployment Trend, 1948')
+
+
+
+Oct 7th
+
+BAR PLOTS AND SCATTER PLOTS
+
+# Generating a vertical bar plot:
+
+pyplot.bar(bar_positions, bar_heights, width)
+
+# or
+
+Axes.bar(bar_positions, bar_heights, width)
+
+# Using arange to return evenly seperated values
+
+bar_positions = arange(5)+0.75
+
+# Using Axes.set_ticks(), which takes in a list of tick locations
+
+ax.set_ticks([1,2,3,4,5])
+
+# Using Axes.set_xticklabel(), which takes in a list of labels
+
+ax_set_xticklabels(['RT_user_nrom','Metacritic_user_nom','IMDB_norm'])
+
+# Rotating the labels
+
+ax_set_xticklabels(['RT_user_nrom','Metacritic_user_nom','IMDB_norm'], rotation = 90)
+
+# Using Axes.scatter() to create a scatter plot
+
+ax.scatter(norm_reviews['Fandango_Ratingvalue'], norm_reviews['RT_user_norm'])
+
+
 
