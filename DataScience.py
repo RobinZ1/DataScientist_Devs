@@ -177,4 +177,36 @@ plt.title('Monthly Unemployment Trends, 1948')
 
 
 
+Oct 7th
+
+# Creating a figure using the pyplot module
+
+fig = plt.figure()
+
+# Adding a subplot to an existing figure with 2 plots and 1 column, one 
+aboev other
+
+ax1 = fig.add_subplot(2,1,1)
+ax2 = fig.add_subplot(2,1,2)
+
+# Generating a line chart within an Axes object
+
+ax1.plot(unrate['DATE'][:12],unrate['VALUE'][:12])
+ax2.plot(unrate['DATE'][12:24],unrate['VALUE'][12:24])
+
+# Changing the dimensions of the figure with figsize parameter
+
+fig = plt.figure(figsize=(12,5))
+
+# Specifying the color for a certain line using the c parameter
+
+plt.plot(unrate[0:12]['MONTH'],unrate[0:12]['VALUE'],c='red')
+
+# Creating a legend using the pyplot module and specifying its location
+
+plt.legend(loc='upper left')
+
+setting the title for an Axes object:
+
+ax.set_title('Unemployment Trend, 1948')
 
