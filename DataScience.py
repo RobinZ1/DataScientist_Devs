@@ -245,4 +245,20 @@ ax_set_xticklabels(['RT_user_nrom','Metacritic_user_nom','IMDB_norm'], rotation 
 ax.scatter(norm_reviews['Fandango_Ratingvalue'], norm_reviews['RT_user_norm'])
 
 
+Oct 13 
+
+IMPROVING PLOT AESTHETICS
+
+# Turning ticks off
+ax.tick_params(bottom='off',left='off',top='off',right='off')
+
+# Removing spines for the right axis
+ax.spines['right'].set_visible(False)
+
+# Removing Spines for all axes
+for key, spine in ax.spines.items():
+    spine.set_visible(False)
+
+
+    
 
