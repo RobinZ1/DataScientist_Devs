@@ -260,5 +260,115 @@ for key, spine in ax.spines.items():
     spine.set_visible(False)
 
 
+
+
+
+Oct 14
+
+PROJECT VISUALIZING THE GENDER GAPS IN COLLEGE DEGREES
+
+fig = plt.figure(figsize=(16, 16))
+
+## Generate first column of line charts. STEM degrees.
+for sp in range(0,18,3):
+    cat_index = int(sp/3)
+    ax = fig.add_subplot(6,3,sp+1)
+    ax.plot(women_degrees['Year'], women_degrees[stem_cats[cat_index]], c=cb_dark_blue, label='Women', linewidth=3)
+    ax.plot(women_degrees['Year'], 100-women_degrees[stem_cats[cat_index]], c=cb_orange, label='Men', linewidth=3)
+    for key,spine in ax.spines.items():
+        spine.set_visible(False)
+    ax.set_xlim(1968, 2011)
+    ax.set_ylim(0,100)
+    ax.set_title(stem_cats[cat_index])
+    ax.tick_params(bottom="off", top="off", left="off", right="off", labelbottom='off')
+    ax.set_yticks([0,100])
+    ax.axhline(50,c=(171/255,171/255,171/255), alpha=0.3)
     
+    if cat_index == 0:
+        ax.text(2003, 85, 'Women')
+        ax.text(2005, 10, 'Men')
+    elif cat_index == 5:
+        ax.text(2005, 87, 'Men')
+        ax.text(2003, 7, 'Women')
+        ax.tick_params(labelbottom='on')
+
+## Generate second column of line charts. Liberal arts degrees.
+for sp in range(1,16,3):
+    cat_index = int((sp-1)/3)
+    ax = fig.add_subplot(6,3,sp+1)
+    ax.plot(women_degrees['Year'], women_degrees[lib_arts_cats[cat_index]], c=cb_dark_blue, label='Women', linewidth=3)
+    ax.plot(women_degrees['Year'], 100-women_degrees[lib_arts_cats[cat_index]], c=cb_orange, label='Men', linewidth=3)
+    for key,spine in ax.spines.items():
+        spine.set_visible(False)
+    ax.set_xlim(1968, 2011)
+    ax.set_ylim(0,100)
+    ax.set_title(lib_arts_cats[cat_index])
+    ax.tick_params(bottom="off", top="off", left="off", right="off", labelbottom='off')
+    ax.set_yticks([0,100])
+    ax.axhline(50,c=(171/255,171/255,171/255), alpha=0.3)
+    
+    if cat_index == 0:
+        ax.text(2003, 78, 'Women')
+        ax.text(2005, 18, 'Men')
+    elif cat_index == 4:
+        ax.tick_params(labelbottom='on')
+
+## Generate third column of line charts. Other degrees.
+for sp in range(2,20,3):
+    cat_index = int((sp-2)/3)
+    ax = fig.add_subplot(6,3,sp+1)
+    ax.plot(women_degrees['Year'], women_degrees[other_cats[cat_index]], c=cb_dark_blue, label='Women', linewidth=3)
+    ax.plot(women_degrees['Year'], 100-women_degrees[other_cats[cat_index]], c=cb_orange, label='Men', linewidth=3)
+    for key,spine in ax.spines.items():
+        spine.set_visible(False)
+    ax.set_xlim(1968, 2011)
+    ax.set_ylim(0,100)
+    ax.set_title(other_cats[cat_index])
+    ax.tick_params(bottom="off", top="off", left="off", right="off", labelbottom='off')
+    ax.set_yticks([0,100])
+    ax.axhline(50,c=(171/255,171/255,171/255), alpha=0.3)
+    
+    if cat_index == 0:
+        ax.text(2003, 90, 'Women')
+        ax.text(2005, 5, 'Men')
+    elif cat_index == 5:
+        ax.text(2005, 62, 'Men')
+        ax.text(2003, 30, 'Women')
+        ax.tick_params(labelbottom='on')
+    
+#Export file before calling pyplot.show()    
+fig.savefig('gender_degrees.png')
+plt.show()
+
+
+
+
+
+
+
+VISUALIZING GEOGRAPHICS DATA
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
+
+fig, ax = plt.subplots(figsize=(15,20))
+plt.title("Scaled Up Earth With Coastlines")
+m = Basemap(projection='merc', llcrnrlat=-80, urcrnrlat=80, llcrnrlon = -180, urcrnrlon=180)
+longitudes = airports['longitude'].tolist()
+latitudes = airports['latitude'].tolist()
+x, y = m(longitudes, latitudes)
+m.scatter(x, y, s = 1)
+m.drawcoastlines()
+
+def create_great_circles(df):
+    for index, row in df.iterrows():
+        end_lat, start_lat = row['end_lat'], row['start_lat']
+        end_lon, start_lon = row['end_lon'], row['start_lon']
+        if abs(end_lat - start_lat) < 180:
+            if abs(end_lon - start_lon) < 180:
+                m.drawgreatcircle(start_lon, start_lat, end_lon, end_lat)
+
+dfw = geo_routes[geo_routes['source'] == 'DFW']
+create_great_circles(dfw)
+plt.show()
 
