@@ -429,3 +429,31 @@ The pd.merge() function uses keys to perform database-style joins. It can only c
 
 
 
+DATA AGGREGATION: TAKEAWAYS
+
+# GROUPBY OBJECTS
+
+#create a groupby object
+
+df.groupby('col_to_groupby')
+
+#select one column from a groupby object
+
+df.groupby('col_to_groupby')['cols_selected']
+
+#select multiple columns from a groupby object
+
+df.groupby('col_to_groupby')[['col_selected1','col_selected2']]
+
+
+#COMMON AGGREAGATION METHODS
+
+mean(), sum(), size() calculate the size of groups, count() calculate the count of values in groups, min(), max()
+
+#GROUPY.AGG() METHOD
+
+# Apply one function to a GroupBy object
+
+df.groupby('col_to_groupby').agg(function name)
+
+# Apply multiple functions to a GroupBy object
