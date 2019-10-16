@@ -457,3 +457,47 @@ mean(), sum(), size() calculate the size of groups, count() calculate the count 
 df.groupby('col_to_groupby').agg(function name)
 
 # Apply multiple functions to a GroupBy object
+
+df.groupby('col_to_groupby').agg([function_name1,function_name2,function_name3])
+
+# Apply a custom function to a GroupBy object
+
+df.groupby('col_to_groupby').agg(custom_function)
+
+
+#AGGREGATION WITH THE DATAFRAME.PIVOT_TABLE METHOD
+
+# apply only one function
+
+df.pivot_table(value='col_to_aggregate', index='col_to_groupby', aggfunc=function_name)
+
+# apply multiple functions
+
+df.pivot_table(value='col_to_aggregate', index='col_to_groupby',aggfunc=[function_name1, function_name2, function_name3])
+
+# aggregate multiple columns
+
+df.pivot_table(['col_to_aggregate1','col_to_aggregate2'], 'col_to_groupby', aggfunc=function_name)
+
+# calculate the grand total for the aggregation column:
+
+df.pivot_table(['col_to_aggregate1, col_to_aggregate2'],'col_to_groupby',aggfunc=function_name, margins = True)
+
+'''
+Concepts
+
+Aggregation is aplying a statistical operation to groups of data. It reduces dimensionality so that the dataframe returned will contain just one value
+for each group. The aggregation process can be broken down into three steps:
+    split the dataframe into groups
+    apply a function to each group
+    combine the results into one data structure
+
+The groupby operation optimizes the split-apply-combine process. It can be broken down into two steps:
+    create a groupby object
+    call an aggregation functioin
+
+Creating the groupby object is an intermediate step that allows us to optimize our work. It contains information on how to group the dataframe, 
+but nothing is actually computed until a function is called
+'''
+
+
