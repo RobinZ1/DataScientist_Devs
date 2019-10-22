@@ -501,3 +501,50 @@ but nothing is actually computed until a function is called
 '''
 
 
+OCT 21ST
+
+WORKING WITH STRINGS IN PANDAS
+
+#REGULAR EXPRESSIONS
+# To match multiple characters, specify the characters between "[]"
+
+pattern = r"[Nn]ational accounts"
+
+# To match a range of characters or numbers, use:
+
+pattern = r"[0-9]"
+
+# To create a capturing group, or indicate that only the character pattern match
+# should be extracted, specify the characters between "()"
+
+pattern = r"([1-2][0-9][0-9][0-9])"
+
+# To repeat characters, use "{}" to repeat pattern "[0-9]" three times
+
+pattern = r"[1-2][0-9]{3}"
+
+#VECTORIZED STRING METHODS
+
+# Find specific strings or substrings in a column
+
+df[col_name].str.contains(pattern)
+
+# Extract specific strings or substrings in a column
+
+df[col_name].str.extract(pattern)
+
+# Extract more than one group of patterns from a column
+
+df[col_name].str.extractall(pattern)
+
+# Replace a regex or string in a column with another string
+
+df[col_name].str.replace(pattern, replacement_string)
+
+'''Concepts: Pandas has built in a number of vectorized methods that perform the
+same operations for strings in Series as Python string methods
+A regular expression is a sequence of characters that describes a search pattern.
+In pandas, regular expression is integrated with vectorized string methods to make
+finding and extracting patterns of characters easier.
+'''
+
